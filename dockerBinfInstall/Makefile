@@ -2,11 +2,11 @@
 Binf: createDirectories docker.io dockerImage write
 
 createDirectories:
-	@mkdir  ~/docker
-	@mkdir ~/docker/binff402
-	@mkdir ~/docker/binff402/practical
+	@mkdir -p ~/docker
+	@mkdir -p ~/docker/binff402
+	@mkdir -p ~/docker/binff402/practical
 docker.io:
-	@apt install docker.io
+	@sudo apt install docker.io
 dockerImage:
 	@docker build -t binf:v0.1 .
 write:
