@@ -26,7 +26,20 @@ RUN export PATH="usr/local/bin:$PATH"
 RUN pip3 install git+https://github.com/rrwick/Minipolish.git
 RUN cd
 VOLUME practical
-
-
-
-
+RUN apt install -y cmake
+RUN cd usr/local/bin &&\
+ git clone https://github.com/lbcb-sci/raven &&\
+ cd raven && mkdir build && cd build &&\
+ cmake -DCMAKE_BUILD_TYPE=Release .. &&\
+ make
+ENV PATH="/usr/local/bin/raven/build/bin/:${PATH}"
+RUN git clone https://github.com/fenderglass/Flye &&\
+ cd Flye &&\
+ python3 setup.py install
+RUN apt install -y canu
+RUN apt install -y curl
+RUN apt install -y bedtools
+RUN cd /usr/local/bin &&\ 
+ git clone https://github.com/tseemann/barrnap.git
+ENV PATH="/usr/local/bin/barrnap/bin:${PATH}"
+RUN apt install -y prokka
